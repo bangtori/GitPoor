@@ -1,3 +1,5 @@
+import FilledButton from "../common/FilledButton";
+
 interface TodayCommitCardProps {
   currentFine?: number;
   hasCommit?: boolean;
@@ -19,12 +21,9 @@ const TodayCommitCard = ({
           현재 벌금: {currentFine.toLocaleString()}원
         </p>
       </div>
-      <button
-        onClick={onRefresh}
-        className="w-full mt-6 py-3 bg-emerald-600 hover:bg-emerald-700 rounded-xl font-bold transition"
-      >
-        커밋 확인하기 (새로고침)
-      </button>
+      <FilledButton onClick={onRefresh}>
+        "커밋 확인하기 (새로고침)"
+      </FilledButton>
     </div>
   );
 };
