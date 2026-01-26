@@ -10,7 +10,7 @@ const Dashboard = ({ user, onLogout }: AuthProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-8">
+    <div className="min-h-screen bg-background text-white p-8">
       {/* 상단 헤더 */}
       <Headers user={user} onLogout={onLogout} />
 

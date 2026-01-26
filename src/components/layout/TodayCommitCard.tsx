@@ -1,3 +1,4 @@
+import DefaultCard from "../common/DefaultCard";
 import FilledButton from "../common/FilledButton";
 
 interface TodayCommitCardProps {
@@ -12,9 +13,8 @@ const TodayCommitCard = ({
   onRefresh,
 }: TodayCommitCardProps) => {
   return (
-    <div className="bg-gray-800 rounded-2xl p-6 border border-gray-700 shadow-xl">
-      <h2 className="text-xl font-bold mb-4 text-gray-200">오늘의 커밋 🌿</h2>
-      <div className="flex flex-col items-center justify-center py-8 bg-gray-900/50 rounded-xl border border-dashed border-gray-700">
+    <DefaultCard title="오늘의 커밋 🌿">
+      <div className="flex flex-col items-center justify-center py-8 bg-background-input rounded-xl border border-dashed border-gray-700">
         <span className="text-5xl mb-4">😴</span>
         <p className="text-gray-400">아직 커밋이 감지되지 않았습니다.</p>
         <p className="text-rose-500 font-bold mt-2">
@@ -24,7 +24,7 @@ const TodayCommitCard = ({
       <FilledButton onClick={onRefresh}>
         "커밋 확인하기 (새로고침)"
       </FilledButton>
-    </div>
+    </DefaultCard>
   );
 };
 
