@@ -21,7 +21,5 @@ export async function GET(request: Request) {
     console.log('3. 세션 교환 성공!');
   }
 
-  // 🔴 중요: 여기서 /home으로 보내고 있나요?
-  // 만약 여기가 `${origin}/` 이라면 다시 로그인 페이지로 돌아갑니다.
-  return NextResponse.redirect(`${origin}/home`);
+  return NextResponse.redirect(`${origin}/dashboard`);
 }
