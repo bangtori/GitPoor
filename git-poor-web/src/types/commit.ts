@@ -53,7 +53,7 @@ export interface Commit {
 export interface TodayCommitSummary {
   date: string; // "2026-01-29"
   total_changes: number; // 오늘 발생한 모든 커밋의 total_changes 합계
-  commit_count: number; // 오늘 총 몇 번 커밋했는지 (UI용 보너스 데이터)
+  push_count: number; // 오늘 총 푸쉬 이벤트 수
   languages: string[]; // 오늘 사용된 언어들 (중복 제거된 Set 결과물)
   is_success: boolean; // 커밋 여부 (total_changes > 0)
 }

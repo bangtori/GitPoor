@@ -45,10 +45,9 @@ export default function MyProfileSection({
         count={5} // TODO: 연속학습 일 수 로직 연결
       />
 
-      {/* 연속학습 일 수 로직 연결*/}
+      {/* 연속학습 일 수 로직 연결 */}
       <StreakBadge count={5} />
 
-      {/* 2. 데이터와 핸들러를 커밋 카드에 전달 */}
       <TodayCommitCard
         commit={commitSummary}
         isLoading={isLoading}

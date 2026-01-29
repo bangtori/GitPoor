@@ -49,7 +49,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       {/* 데스크탑 */}
       <div className="hidden md:grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-5 space-y-6">
-          <h2 className="text-2xl font-bold mb-2">대시보드</h2>
           <MyProfileSection user={user} initialCommit={initialData} />
         </div>
 

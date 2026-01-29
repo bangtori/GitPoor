@@ -122,7 +122,7 @@ export async function POST() {
 
     const resultData = {
       date: todayTarget,
-      commit_count: processedShas.size, // 실제 유효한 커밋 수
+      push_count: processedShas.size, // 실제 유효한 커밋 수
       total_changes: totalAdditions + totalDeletions,
       languages: Array.from(languageSet),
       is_success: processedShas.size > 0, // 유효 커밋이 1개라도 있어야 성공
@@ -130,6 +130,7 @@ export async function POST() {
 
     console.log('[서버] 최종 결과:', resultData);
 
+    //TODO: - DB 저장 로직
     return NextResponse.json({
       success: true,
       message: '분석 완료',
