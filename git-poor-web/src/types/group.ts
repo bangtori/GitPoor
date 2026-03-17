@@ -1,5 +1,3 @@
-import { GroupRole } from './role';
-
 export interface GroupSummary {
   id: string;
   name: string;
@@ -38,4 +36,5 @@ export interface GroupDetail {
 
 export interface GroupMemberWithCommit extends GroupMember {
   today_commit_count: number;
+  recent_commits: boolean[];
 }
