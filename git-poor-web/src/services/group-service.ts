@@ -298,30 +298,59 @@ export async function getGroupMembersWithTodayCommitCount(
   // 기존 멤버 목록
   const members: GroupMember[] = await getGroupMembers(groupId);
   if (members.length === 0) return [];
-  const today = getGitPoorDate(new Date().toISOString());
-  const memberIds = members.map((m) => m.user_id);
 
-  // 오늘 커밋 조회 (admin)
-  const { data: rows, error } = await admin
-    .from('commits')
-    .select('user_id')
-    .in('user_id', memberIds)
-    .eq('commit_date', today);
-
-  if (error) {
-    throw new AppError('SERVER_ERROR', '오늘 커밋 조회에 실패했습니다.', error);
+  // 날짜 범위 계산 (오늘 포함 최근 7일)
+  const today = new Date();
+  const dateStrList: string[] = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    dateStrList.push(getGitPoorDate(d.toISOString()));
   }
 
-  // user_id별 카운트
-  const countMap = new Map<string, number>();
+  const startDate = dateStrList[0];
+  const endDate = dateStrList[6];
+
+  const memberIds = members.map((m) => m.user_id);
+
+  // 최근 7일 커밋 조회 (admin)
+  const { data: rows, error } = await admin
+    .from('commits')
+    .select('user_id, commit_date')
+    .in('user_id', memberIds)
+    .gte('commit_date', startDate)
+    .lte('commit_date', endDate);
+
+  if (error) {
+    throw new AppError(
+      'SERVER_ERROR',
+      '최근 7일 커밋 조회에 실패했습니다.',
+      error,
+    );
+  }
+
+  // user_id별, date별 커밋 여부 매핑
+  const commitSet = new Set<string>(); // "userId_date"
+  const todayCountMap = new Map<string, number>();
+
   (rows ?? []).forEach((r: any) => {
-    countMap.set(r.user_id, (countMap.get(r.user_id) ?? 0) + 1);
+    commitSet.add(`${r.user_id}_${r.commit_date}`);
+    if (r.commit_date === endDate) {
+      todayCountMap.set(r.user_id, (todayCountMap.get(r.user_id) ?? 0) + 1);
+    }
   });
 
-  return members.map((m) => ({
-    ...m,
-    today_commit_count: countMap.get(m.user_id) ?? 0,
-  }));
+  return members.map((m) => {
+    const recent_commits = dateStrList.map((date) =>
+      commitSet.has(`${m.user_id}_${date}`),
+    );
+
+    return {
+      ...m,
+      today_commit_count: todayCountMap.get(m.user_id) ?? 0,
+      recent_commits,
+    };
+  });
 }
 
 // 그룹 상세 정보 완성 (그룹 정보 + 멤버 리스트 )
