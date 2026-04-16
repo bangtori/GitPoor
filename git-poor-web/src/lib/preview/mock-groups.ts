@@ -76,6 +76,7 @@ export const mockGroupMembersOwner: GroupMemberWithCommit[] = [
     current_penalty_count: 2,
     joined_at: '2025-06-15',
     today_commit_count: 5,
+    recent_commits: [true, true, false, true, true, true, true],
   },
   {
     user_id: 'b2c3d4e5-f6a7-8901-bcde-f12345678901',
@@ -89,6 +90,7 @@ export const mockGroupMembersOwner: GroupMemberWithCommit[] = [
     current_penalty_count: 1,
     joined_at: '2025-07-02',
     today_commit_count: 3,
+    recent_commits: [true, false, true, true, false, true, true],
   },
   {
     user_id: 'c3d4e5f6-a7b8-9012-cdef-123456789012',
@@ -102,6 +104,7 @@ export const mockGroupMembersOwner: GroupMemberWithCommit[] = [
     current_penalty_count: 4,
     joined_at: '2025-08-10',
     today_commit_count: 0,
+    recent_commits: [false, false, true, false, false, false, false],
   },
   {
     user_id: 'd4e5f6a7-b8c9-0123-defa-234567890123',
@@ -115,6 +118,7 @@ export const mockGroupMembersOwner: GroupMemberWithCommit[] = [
     current_penalty_count: 0,
     joined_at: '2025-09-20',
     today_commit_count: 7,
+    recent_commits: [true, true, true, true, true, true, true],
   },
 ];
 
@@ -142,6 +146,7 @@ export const mockGroupMembersMember: GroupMemberWithCommit[] = [
     current_penalty_count: 0,
     joined_at: '2025-10-01',
     today_commit_count: 4,
+    recent_commits: [true, true, true, true, false, true, true],
   },
   {
     user_id: PREVIEW_USER_ID,
@@ -155,6 +160,7 @@ export const mockGroupMembersMember: GroupMemberWithCommit[] = [
     current_penalty_count: 0,
     joined_at: '2025-10-05',
     today_commit_count: 5,
+    recent_commits: [true, true, false, true, true, true, true],
   },
   {
     user_id: 'f6a7b8c9-d0e1-2345-fabc-456789012345',
@@ -168,6 +174,7 @@ export const mockGroupMembersMember: GroupMemberWithCommit[] = [
     current_penalty_count: 2,
     joined_at: '2025-10-05',
     today_commit_count: 2,
+    recent_commits: [false, true, true, false, true, false, true],
   },
   {
     user_id: 'a7b8c9d0-e1f2-3456-abcd-567890123456',
@@ -181,6 +188,7 @@ export const mockGroupMembersMember: GroupMemberWithCommit[] = [
     current_penalty_count: 3,
     joined_at: '2025-11-12',
     today_commit_count: 0,
+    recent_commits: [false, false, false, false, true, false, false],
   },
   {
     user_id: 'b8c9d0e1-f2a3-4567-bcde-678901234567',
@@ -194,6 +202,7 @@ export const mockGroupMembersMember: GroupMemberWithCommit[] = [
     current_penalty_count: 1,
     joined_at: '2025-12-01',
     today_commit_count: 1,
+    recent_commits: [true, false, true, false, false, true, false],
   },
 ];
 
